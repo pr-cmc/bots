@@ -8,14 +8,11 @@ def start(message):
     markup = types.InlineKeyboardMarkup(row_width=2)
     item = types.InlineKeyboardButton('📓Лента историй📓', callback_data='history_list')
     item2 = types.InlineKeyboardButton('➕Добавить историю➕', callback_data='add_history')
-    item3 = types.InlineKeyboardButton('😌О боте😌', callback_data='about')
-    markup.add(item, item2, item3)
+    markup.add(item, item2)
     bot.send_message(message.chat.id, f'Привет {message.from_user.first_name}!', reply_markup=markup)
 @bot.callback_query_handler(func=lambda call: True)
 def markup(call):
     if call.message:
-        if call.data == 'about':
-            bot.send_message(call.message.chat.id, 'Разработчик: @pr_cmc\nОписание: Я бот с историями. Здесь ты можешь читать и писать истории.')
         if call.data == 'add_history':
             bot.send_message(call.message.chat.id, 'Добавьте имя вашей истории и историю')
         if call.data == 'history_list':
