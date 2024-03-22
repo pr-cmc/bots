@@ -1,7 +1,7 @@
 import telebot
 from telebot import types
 import random
-bot = telebot.TeleBot('6692773799:AAF6sNFIWiVKMCLdBBs3nZszCqGS03T0Rzk')
+bot = telebot.TeleBot('')#Токен
 players = []
 players2 = []
 @bot.message_handler(commands=['start'])
