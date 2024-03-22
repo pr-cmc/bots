@@ -6,15 +6,7 @@ players = []
 players2 = []
 @bot.message_handler(commands=['start'])
 def start(message):
-    markup = types.InlineKeyboardMarkup(row_width=1)
-    item = types.InlineKeyboardButton('О боте', callback_data='about')
-    markup.add(item)
-    bot.send_photo(message.chat.id, 'https://s.poembook.ru/theme/97/c2/0f/d7bcb057973c48bdd7e272c063f37355114770e0.jpeg', caption=f'Привет {message.from_user.first_name}!\nЯ бот для игры в русскую рулетку в группе или канале. Добавляй меня и играй. Удачи в игре!', reply_markup=markup)
-@bot.callback_query_handler(func=lambda call: True)
-def call(call):
-    if call.message:
-        if call.data == 'about':
-            bot.send_message(call.message.chat.id, 'Разработчик: @pr_cmc\nОписание: Я бот для игры в русскую рулетку.')
+    bot.send_photo(message.chat.id, 'https://s.poembook.ru/theme/97/c2/0f/d7bcb057973c48bdd7e272c063f37355114770e0.jpeg', caption=f'Привет {message.from_user.first_name}!\nЯ бот для игры в русскую рулетку в группе или канале. Добавляй меня и играй. Удачи в игре!')
 @bot.message_handler(commands=['newgame'])
 def game(message):
     markup2 = types.ReplyKeyboardMarkup(row_width=1)
