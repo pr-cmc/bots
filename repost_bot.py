@@ -58,8 +58,7 @@ def add(message):
 @bot.channel_post_handler(content_types=["text", "audio", "document", "photo", "sticker", "video", "video_note", "voice", "location", "contact"])
 def repost(message):
     if message.chat.type == "channel":
-        info3 = cur.execute('SELECT * FROM data WHERE channel_1=?', (message.chat.id, ))
-        if info3.fetchone() != None: bot.forward_message(int(cur.execute("select * from data where channel_1 = ?", (message.chat.id, )).fetchone()[2]), message.chat.id, message.message_id)
+        if cur.execute("select * from data where channel_1 = ?", (message.chat.id, )).fetchone()[2] != None: bot.forward_message(int(cur.execute("select * from data where channel_1 = ?", (message.chat.id, )).fetchone()[2]), message.chat.id, message.message_id)
 #___________Обрабатываем пересылку из одного телеграм канала в другой______
 while True:
     try:
