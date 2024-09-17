@@ -16,7 +16,6 @@ bot = telebot.TeleBot(token) #Токен
 #___________Токен________________________
 @bot.message_handler(commands=["start"])
 def start(message):
-    #____test____
     data = ""
     keyboard = InlineKeyboardMarkup(row_width=1)
     for i in range(0, int(str(cur.execute("SELECT COUNT(*) FROM data").fetchone()).replace("(", "").replace(")", "").replace(",", ""))):
@@ -59,7 +58,8 @@ def add(message):
 @bot.channel_post_handler(content_types=["text", "audio", "document", "photo", "sticker", "video", "video_note", "voice", "location", "contact"])
 def repost(message):
     if message.chat.type == "channel":
-        bot.forward_message(int(cur.execute("select * from data where channel_1 = ?", (message.chat.id, )).fetchone()[2]), message.chat.id, message.message_id)
+        info3 = cur.execute('SELECT * FROM data WHERE channel_1=?', (message.chat.id, ))
+        if info3.fetchone() != None: bot.forward_message(int(cur.execute("select * from data where channel_1 = ?", (message.chat.id, )).fetchone()[2]), message.chat.id, message.message_id)
 #___________Обрабатываем пересылку из одного телеграм канала в другой______
 while True:
     try:
