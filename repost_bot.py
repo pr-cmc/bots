@@ -41,7 +41,7 @@ def delete(message):
         db.commit()
         bot.send_message(message.chat.id, "✅Канал успешно удален✅")
     else:
-        bot.send_message(message.chat.id, "❌Такой канал уже существует❌")
+        bot.send_message(message.chat.id, "❌Такой канал не существует❌")
     start(message)
 #___________Обрабатываем удаление_________
 def add(message):
